@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Salary</title>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #333;
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            padding: 20px;
+            text-align: left;
+        }
+
+        h1 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            font-weight: normal;
+        }
+
+        .result {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .result-title {
+            font-weight: bold;
+        }
+
+        #head5 {
+            font-size: 22px;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="result">
+            <span class="result-title">Salary:</span> <span id="head"></span>
+        </div>
+
+        <div class="result">
+            <span class="result-title">PF:</span> <span id="head2"></span>
+        </div>
+
+        <div class="result">
+            <span class="result-title">EPF:</span> <span id="head3"></span>
+        </div>
+
+        <div class="result">
+            <span class="result-title">Tax:</span> <span id="head4"></span>
+        </div>
+
+        <div class="result">
+            <span class="result-title">Fixed Salary:</span> <span id="head5"></span>
+        </div>
+
+    </div>
+
+    <script>
+
+        let salary = parseFloat(prompt("Enter the salary"));
+        let PF = parseFloat(prompt("Enter PF percentage"));
+        let EPF = parseFloat(prompt("Enter employer PF percentage"));
+        let tax = parseFloat(prompt("Enter Tax percentage"));
+
+        let pf_rs = (PF * salary) / 100;
+        let epf_rs = (EPF * salary) / 100;
+        let tax_rs = (tax * salary) / 100;
+
+        let Fixed_Salary = salary - pf_rs - epf_rs - tax_rs;
+
+        document.getElementById("head").innerHTML = salary;
+        document.getElementById("head2").innerHTML = pf_rs;
+        document.getElementById("head3").innerHTML = epf_rs;
+        document.getElementById("head4").innerHTML = tax_rs;
+        document.getElementById("head5").innerHTML = Fixed_Salary;
+
+    </script>
+    
+</body>
+</html>

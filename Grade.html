@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        #head7 {
+            font-size: 26px;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 id="head"></h1>
+        <h1 id="head2"></h1>
+        <h1 id="head3"></h1>
+        <h1 id="head4"></h1>
+        <h1 id="head5"></h1>
+        <h1 id="head6"></h1>
+        <h1 id="head7"></h1>
+    </div>
+
+    <script>
+        let SE = parseInt(prompt("Enter SE marks"));
+        let Asp = parseInt(prompt("Enter Asp marks"));
+        let Oracle = parseInt(prompt("Enter Oracle marks"));
+        let DCN = parseInt(prompt("Enter DCN marks"));
+
+        let total = SE + Asp + Oracle + DCN;
+        let per = (total / 400) * 100;
+
+        let grade = ""; 
+
+        if (per >= 90) {
+            grade = "Grade A";
+        } 
+        else if (per >= 80) {
+            grade = "Grade B";
+        } 
+        else if (per >= 70) {
+            grade = "Grade C";
+        } 
+        else if (per >= 60) {
+            grade = "Grade D";
+        } 
+        else if (per >= 40) {
+            grade = "Grade E";
+        } 
+        else {
+            grade = "Fail";
+        }
+
+        document.getElementById("head").innerHTML = "SE: " + SE;
+        document.getElementById("head2").innerHTML = "Asp: " + Asp;
+        document.getElementById("head3").innerHTML = "Oracle: " + Oracle;
+        document.getElementById("head4").innerHTML = "DCN: " + DCN;
+        document.getElementById("head5").innerHTML = "Total: " + total;
+        document.getElementById("head6").innerHTML = "Per: " + per; 
+        document.getElementById("head7").innerHTML = grade; 
+    </script>
+
+</body>
+</html>

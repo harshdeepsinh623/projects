@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enhanced Billing System</title>
+  <style>
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        background-color: #f4f4f9;
+        color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 1420px;
+        background-color: gainsboro;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+
+    .header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .header h1 {
+        font-size: 2.5rem;
+        color: #5a5af1;
+    }
+
+    .customer-details {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 25px;
+        margin-bottom: 20px;
+    }
+
+    .customer-details label {
+        margin-left: 10px;
+        font-weight: bold;
+    }
+
+    .customer-details input {
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .items-section {
+        display: flex;
+        gap: 40px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+    }
+
+    .items {
+        flex: 1;
+        width: 400px;
+        background-color: #f9f9ff;
+        border: 1px solid #eaeaea;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .items h2 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        color: #333;
+    }
+
+    .items label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .items input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-bottom: 15px;
+    }
+
+    .summary-section {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+
+    .summary {
+        flex: 1;
+        min-width: 300px;
+        background-color: #f9f9ff;
+        border: 1px solid #eaeaea;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .summary label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .summary input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f7f7f7;
+    }
+
+    .actions {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .actions button {
+        background-color: #5a5af1;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        margin: 0 10px;
+        transition: background-color 0.3s;
+    }
+
+    .actions button:hover {
+        background-color: #4747cc;
+    }
+
+    .actions button#clear-fields {
+        background-color: #f5a623;
+    }
+
+    .actions button#clear-fields:hover {
+        background-color: #d4891a;
+    }
+
+    .actions button#exit {
+        background-color: #e74c3c;
+    }
+
+    .actions button#exit:hover {
+        background-color: #c0392b;
+    }
+
+    .bill-area {
+        text-align: center;
+    }
+
+    .bill-area h2 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    #bill-display {
+        text-align: center;
+        width: 50%;
+        height: 320px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        background-color: #f9f9ff;
+        resize: none;
+        font-size: 1rem;
+        color: #333;
+    }
+
+    @media (max-width: 768px) {
+        .customer-details {
+            flex-direction: column;
+        }
+
+        .items-section,
+        .summary-section {
+            flex-direction: column;
+        }
+    }
+
+  </style>
+</head>
+<body>
+ 
+    <div class="container">
+        <div class="header">
+            <h1>Billing System</h1>
+        </div>
+        <div class="customer-details">
+            <label>Customer Name:</label>
+            <input type="text" id="customer-name" placeholder="Enter Customer Name" required>
+            <label>Contact No.:</label>
+            <input type="text" id="contact-no" placeholder="Enter Contact No." required>
+            <label>Bill No.:</label>
+            <input type="text" id="bill-no" placeholder="Enter Bill No." required>
+        </div>
+        <div class="items-section">
+            <div class="items snacks">
+                <h2>Snacks</h2>
+                <label>Nutella Choco Spread</label>
+                <input type="number" id="nutella" value="0">
+                <label>Noodles (1 pack)</label>
+                <input type="number" id="noodles" value="0">
+                <label>Lays (10 rs)</label>
+                <input type="number" id="lays" value="0">
+                <label>Oreo (20rs)</label>
+                <input type="number" id="oreo" value="0">
+                <label>Chocolate Muffins</label>
+                <input type="number" id="muffins" value="0">
+            </div>
+            <div class="items grocery">
+                <h2>Grocery</h2>
+                <label>Aashirwaad Atta (1kg)</label>
+                <input type="number" id="atta" value="0">
+                <label>Basmati Rice (1kg)</label>
+                <input type="number" id="rice" value="0">
+                <label>Sunflower Oil (1ltr)</label>
+                <input type="number" id="oil" value="0">
+                <label>Refined Sugar (1kg)</label>
+                <input type="number" id="sugar" value="0">
+                <label>Daal (1kg)</label>
+                <input type="number" id="daal" value="0">
+            </div>
+            <div class="items hygiene">
+                <h2>Beauty & Hygiene</h2>
+                <label>Bathing Soap</label>
+                <input type="number" id="soap" value="0">
+                <label>Shampoo (1ltr)</label>
+                <input type="number" id="shampoo" value="0">
+                <label>Body Lotion (1 ltr)</label>
+                <input type="number" id="lotion" value="0">
+                <label>Face Cream</label>
+                <input type="number" id="face-cream" value="0">
+                <label>Shaving Foam</label>
+                <input type="number" id="shaving-foam" value="0">
+            </div>
+        </div>
+        <div class="summary-section">
+            <div class="summary">
+                <label>Total Snacks Price:</label>
+                <input type="text" id="total-snacks-price" readonly>
+                <label>Total Grocery Price:</label>
+                <input type="text" id="total-grocery-price" readonly>
+                <label>Total Beauty & Hygiene Price:</label>
+                <input type="text" id="total-hygiene-price" readonly>
+            </div>
+            <div class="summary">
+                
+                <label>Snacks Tax:</label>
+                <input type="text" id="snacks-tax" readonly>
+                <label>Grocery Tax:</label>
+                <input type="text" id="grocery-tax" readonly>
+                <label>Beauty & Hygiene Tax:</label>
+                <input type="text" id="hygiene-tax" readonly>
+            </div>
+        </div>
+        <div class="actions">
+            <button id="calculate-bill">Total Bill</button>
+            <button id="clear-fields">Clear Fields</button>
+            <button id="exit">Exit</button>
+        </div>
+
+        
+        <div class="bill-area">
+            <h2>Bill Area</h2>
+            <textarea id="bill-display" readonly></textarea>
+        </div>  
+    </div>
+</body>
+</html>
+
+  <script>
+
+const prices = {
+  nutella: 250,
+  noodles: 15,
+  lays: 10,
+  oreo: 20,
+  muffins: 50,
+  dairymilk: 60,
+  numkeen: 15,
+  atta: 45,
+  paasta: 80,
+  rice: 100,
+  oil: 120,
+  sugar: 50,
+  daal: 70,
+  tea: 150,
+  soap: 25,
+  shampoo: 200,
+  lotion: 250,
+  "face-cream": 150,
+  "shaving-foam": 100,
+  "face-mask": 50,
+  sanitizer: 40,
+};
+
+const taxRates = {
+  snacks: 0.05, 
+  grocery: 0.07, 
+  hygiene: 0.10, 
+};
+
+document.getElementById("calculate-bill").addEventListener("click", calculateBill);
+document.getElementById("clear-fields").addEventListener("click", clearFields);
+document.getElementById("exit").addEventListener("click", exitApplication);
+
+function calculateBill() {
+
+  const snacksItems = ["nutella", "noodles", "lays", "oreo", "muffins"];
+  const totalSnacksPrice = calculateCategoryTotal(snacksItems);
+  const snacksTax = totalSnacksPrice * taxRates.snacks;
+
+  const groceryItems = ["atta", "rice", "oil", "sugar", "daal"];
+  const totalGroceryPrice = calculateCategoryTotal(groceryItems);
+  const groceryTax = totalGroceryPrice * taxRates.grocery;
+
+  const hygieneItems = ["soap", "shampoo", "lotion", "face-cream", "shaving-foam"];
+  const totalHygienePrice = calculateCategoryTotal(hygieneItems);
+  const hygieneTax = totalHygienePrice * taxRates.hygiene;
+
+  const totalSnacksWithTax = totalSnacksPrice + snacksTax;
+  const totalGroceryWithTax = totalGroceryPrice + groceryTax;
+  const totalHygieneWithTax = totalHygienePrice + hygieneTax;
+
+  document.getElementById("total-snacks-price").value = totalSnacksWithTax.toFixed(2);
+  document.getElementById("total-grocery-price").value = totalGroceryWithTax.toFixed(2);
+  document.getElementById("total-hygiene-price").value = totalHygieneWithTax.toFixed(2);
+
+  document.getElementById("snacks-tax").value = snacksTax.toFixed(2);
+  document.getElementById("grocery-tax").value = groceryTax.toFixed(2);
+  document.getElementById("hygiene-tax").value = hygieneTax.toFixed(2);
+
+  const totalBill = totalSnacksPrice + snacksTax + totalGroceryPrice + groceryTax + totalHygienePrice + hygieneTax;
+  const customerName = document.getElementById("customer-name").value;
+  const contactNo = document.getElementById("contact-no").value;
+  const billNo = document.getElementById("bill-no").value;
+
+  const billDetails = `
+    Billing System
+    ------------------------------------------------------------------------------------------------------------------
+    Customer Name: ${customerName}
+    Contact No.: ${contactNo}
+    Bill No.: ${billNo}
+    ------------------------------------------------------------------------------------------------------------------
+     Snacks Total: ₹${totalSnacksPrice.toFixed(2)}     +    Snacks Tax: ₹${snacksTax.toFixed(2)}   =   ₹${totalSnacksWithTax.toFixed(2)}
+   Grocery Total: ₹${totalGroceryPrice.toFixed(2)}   +    Grocery Tax: ₹${groceryTax.toFixed(2)}   =     ₹${totalGroceryWithTax.toFixed(2)}
+    Hygiene Total: ₹${totalHygienePrice.toFixed(2)}   +    Hygiene Tax: ₹${hygieneTax.toFixed(2)}  =    ₹${totalHygieneWithTax.toFixed(2)}
+    
+    ------------------------------------------------------------------------------------------------------------------
+    Grand Total: ₹${totalBill.toFixed(2)}
+  `;
+  document.getElementById("bill-display").value = billDetails;
+}
+
+function calculateCategoryTotal(items) {
+  return items.reduce((total, item) => {
+    const quantity = parseInt(document.getElementById(item).value) || 0;
+    return total + quantity * prices[item];
+  }, 0);
+}
+
+function clearFields() {
+  document.querySelectorAll("input[type='number']").forEach((input) => (input.value = 0));
+  document.querySelectorAll("input[type='text']").forEach((input) => (input.value = ""));
+  document.getElementById("bill-display").value = "";
+}
+
+function exitApplication() {
+  alert("Exiting application...");
+  window.close(); 
+}
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interest</title>
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f6f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: left;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .interest {
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .interest-class {
+            font-weight: bold;
+            color: #00796b;
+        }
+
+        .interest span {
+            font-weight: normal;
+            color: #555;
+        }
+
+        #head4 {
+            font-weight: bold;
+            color: #388e3c;
+            font-size: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="interest">
+            <span class="interest-class">Principal:</span> <span id="head"></span>
+        </div>
+
+        <div class="interest">
+            <span class="interest-class">Rate:</span> <span id="head2"></span>
+        </div>
+
+        <div class="interest">
+            <span class="interest-class">Number of Years:</span> <span id="head3"></span>
+        </div>
+
+        <div class="interest">
+            <span class="interest-class">Interest:</span> <span id="head4"></span>
+        </div>
+    </div>
+
+    <script>
+
+        let P = parseInt(prompt("Enter the Principal"));
+        let R = parseInt(prompt("Enter the Rate"));
+        let N = parseInt(prompt("Enter the Number of Years"));
+
+        let Interest = (P * R * N) / 100;
+
+        document.getElementById("head").innerHTML = P;
+        document.getElementById("head2").innerHTML = R;
+        document.getElementById("head3").innerHTML = N;
+        document.getElementById("head4").innerHTML = Interest;
+
+    </script>
+
+</body>
+</html>

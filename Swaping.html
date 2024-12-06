@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swaping</title>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f6f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 200px;
+            width: 40%;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .swaping {
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .swaping span {
+            font-weight: normal;
+            color: #555;
+        }
+
+        .swaping-element {
+            font-weight: bold;
+            color: #00796b;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="swaping">
+            <span class="swaping-element">A:</span> <span id="head"></span>
+        </div>
+
+        <div class="swaping">
+            <span class="swaping-element">B:</span> <span id="head2"></span>
+        </div>
+
+        <div class="swaping">
+            <span class="swaping-element">C:</span> <span id="head3"></span>
+        </div>
+    </div>
+
+    <script>
+
+        let a = prompt("Enter value of A");
+
+        let b = prompt("Enter value of B");
+
+        let c = prompt("Enter value of C");
+
+        let temp = a;
+
+        a = b;
+
+        b = temp;
+
+        document.getElementById("head").innerHTML = a;
+
+        document.getElementById("head2").innerHTML = b;
+        
+        document.getElementById("head3").innerHTML = c;
+    </script>
+    
+</body>
+</html>
